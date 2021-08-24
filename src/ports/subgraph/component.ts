@@ -12,6 +12,7 @@ export function createSubgraphComponent(url: string): ISubgraphComponent {
     remainingAttempts = 3
   ): Promise<T> {
     try {
+      
       const response = await fetch(
         url,
         {

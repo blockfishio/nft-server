@@ -1,17 +1,21 @@
-import { Network, NFTCategory, Rarity, WearableCategory } from '@dcl/schemas'
+import { Network, NFTCategory,
+  //  Rarity, 
+  //  WearableCategory
+   } from '@dcl/schemas'
 import { IHttpServerComponent } from '@well-known-components/interfaces'
 import { AppComponents, Context } from '../../types'
 import { Params } from '../../logic/http/params'
 import { HttpError, asJSON } from '../../logic/http/response'
-import { NFTSortBy, WearableGender } from '../../ports/nfts/types'
+import { NFTSortBy, 
+  // WearableGender 
+} from '../../ports/nfts/types'
 
-export function createNFTsHandler(
-  components: Pick<AppComponents, 'logs' | 'nfts'>
-): IHttpServerComponent.IRequestHandler<Context<'/nfts'>> {
-  const { nfts } = components
+export function createETHNFTsHandler(
+  components: Pick<AppComponents, 'logs' | 'eth_nfts' >
+): IHttpServerComponent.IRequestHandler<Context<'/eth_nfts'>> {
+  const { eth_nfts } = components
   return async (context) => {
-    const params = new Params(context.url.searchParams)
-
+    const params = new Params(context.url.searchParams)    
     const first = params.getNumber('first')
     const skip = params.getNumber('skip')
     const sortBy = params.getValue<NFTSortBy>('sortBy', NFTSortBy)
@@ -20,24 +24,13 @@ export function createNFTsHandler(
     const isOnSale = params.getBoolean('isOnSale')
     const search = params.getString('search')
     const isLand = params.getBoolean('isLand')
-    const isWearableHead = params.getBoolean('isWearableHead')
-    const isWearableAccessory = params.getBoolean('isWearableAccessory')
-    const wearableCategory = params.getValue<WearableCategory>(
-      'wearableCategory',
-      WearableCategory
-    )
-    const wearableGenders = params.getList<WearableGender>(
-      'wearableGender',
-      WearableGender
-    )
+    
     const contractAddresses = params.getAddressList('contractAddress')
     const tokenId = params.getString('tokenId')
-    const itemRarities = params.getList<Rarity>('itemRarity', Rarity)
-    const itemId = params.getString('itemId')
     const network = params.getValue<Network>('network', Network)
 
     return asJSON(() =>
-      nfts.fetchAndCount({
+      eth_nfts.fetchAndCount({
         first,
         skip,
         sortBy,
@@ -46,31 +39,86 @@ export function createNFTsHandler(
         isOnSale,
         search,
         isLand,
-        isWearableHead,
-        isWearableAccessory,
-        wearableCategory,
-        wearableGenders,
         contractAddresses,
         tokenId,
-        itemRarities,
-        itemId,
         network,
       })
     )
   }
 }
 
-export function createNFTHandler(
-  components: Pick<AppComponents, 'logs' | 'nfts'>
+export function createETHNFTHandler(
+  components: Pick<AppComponents, 'logs' | 'eth_nfts'>
 ): IHttpServerComponent.IRequestHandler<
-  Context<'/contracts/:contractAddress/tokens/:tokenId'>
+  Context<'/contracts/:contractAddress/eth/tokens/:tokenId'>
 > {
-  const { nfts } = components
+  const { eth_nfts } = components
   return async (context) => {
     const { contractAddress, tokenId } = context.params
 
     return asJSON(async () => {
-      const results = await nfts.fetch({
+      const results = await eth_nfts.fetch({
+        contractAddresses: [contractAddress],
+        tokenId,
+      })
+
+      if (results.length === 0) {
+        throw new HttpError('Not Found', 404)
+      }
+
+      return results[0]
+    })
+  }
+}
+
+export function createBSCNFTsHandler(
+  components: Pick<AppComponents, 'logs' | 'bsc_nfts' >
+): IHttpServerComponent.IRequestHandler<Context<'/bsc_nfts'>> {
+  const { bsc_nfts } = components
+  return async (context) => {
+    const params = new Params(context.url.searchParams)    
+    const first = params.getNumber('first')
+    const skip = params.getNumber('skip')
+    const sortBy = params.getValue<NFTSortBy>('sortBy', NFTSortBy)
+    const category = params.getValue<NFTCategory>('category', NFTCategory)
+    const owner = params.getAddress('owner')
+    const isOnSale = params.getBoolean('isOnSale')
+    const search = params.getString('search')
+    const isLand = params.getBoolean('isLand')
+    
+    const contractAddresses = params.getAddressList('contractAddress')
+    const tokenId = params.getString('tokenId')
+    const network = params.getValue<Network>('network', Network)
+
+    return asJSON(() =>
+      bsc_nfts.fetchAndCount({
+        first,
+        skip,
+        sortBy,
+        category,
+        owner,
+        isOnSale,
+        search,
+        isLand,
+        contractAddresses,
+        tokenId,
+        network,
+      })
+    )
+  }
+}
+
+export function createBSCNFTHandler(
+  components: Pick<AppComponents, 'logs' | 'bsc_nfts'>
+): IHttpServerComponent.IRequestHandler<
+  Context<'/contracts/:contractAddress/bsc/tokens/:tokenId'>
+> {
+  const { bsc_nfts } = components
+  return async (context) => {
+    const { contractAddress, tokenId } = context.params
+
+    return asJSON(async () => {
+      const results = await bsc_nfts.fetch({
         contractAddresses: [contractAddress],
         tokenId,
       })

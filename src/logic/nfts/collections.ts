@@ -151,21 +151,21 @@ export function fromCollectionsOrderFragment(fragment: OrderFragment) {
   return fromOrderFragment(fragment, Network.MATIC, getCollectionsChainId())
 }
 
-export function getCollectionsExtraVariables(options: NFTFilters) {
-  const extraVariables: string[] = []
-  if (options.itemId) {
-    extraVariables.push('$itemId: String')
-  }
-  return extraVariables
-}
+// export function getCollectionsExtraVariables(options: NFTFilters) {
+//   const extraVariables: string[] = []
+//   if (options.itemId) {
+//     extraVariables.push('$itemId: String')
+//   }
+//   return extraVariables
+// }
 
-export function getCollectionsExtraWhere(options: NFTFilters) {
-  const extraWhere = []
-  if (options.itemId) {
-    extraWhere.push('itemBlockchainId: $itemId')
-  }
-  return extraWhere
-}
+// export function getCollectionsExtraWhere(options: NFTFilters) {
+//   const extraWhere = []
+//   if (options.itemId) {
+//     extraWhere.push('itemBlockchainId: $itemId')
+//   }
+//   return extraWhere
+// }
 
 export function collectionsShouldFetch(filters: NFTFilters) {
   if (

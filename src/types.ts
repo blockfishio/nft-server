@@ -7,7 +7,7 @@ import type {
   IBaseComponent,
 } from '@well-known-components/interfaces'
 import { IMergerComponent } from './ports/merger/types'
-import { Bid, BidFilters, BidSortBy } from './ports/bids/types'
+// import { Bid, BidFilters, BidSortBy } from './ports/bids/types'
 import { Order, OrderFilters, OrderSortBy } from './ports/orders/types'
 import {
   Contract,
@@ -15,7 +15,7 @@ import {
   ContractSortBy,
 } from './ports/contracts/types'
 import { NFTFilters, NFTResult, NFTSortBy } from './ports/nfts/types'
-import { Item, ItemFilters, ItemSortBy } from './ports/items/types'
+// import { Item, ItemFilters, ItemSortBy } from './ports/items/types'
 
 export type AppConfig = {
   HTTP_SERVER_PORT: string
@@ -34,10 +34,11 @@ export type AppComponents = {
   statusChecks: IBaseComponent
   metrics: IMetricsComponent<any>
   orders: IMergerComponent<Order, OrderFilters, OrderSortBy>
-  bids: IMergerComponent<Bid, BidFilters, BidSortBy>
+  // bids: IMergerComponent<Bid, BidFilters, BidSortBy>
   contracts: IMergerComponent<Contract, ContractFilters, ContractSortBy>
-  nfts: IMergerComponent<NFTResult, NFTFilters, NFTSortBy>
-  items: IMergerComponent<Item, ItemFilters, ItemSortBy>
+  eth_nfts: IMergerComponent<NFTResult, NFTFilters, NFTSortBy>
+  bsc_nfts: IMergerComponent<NFTResult, NFTFilters, NFTSortBy>
+  // items: IMergerComponent<Item, ItemFilters, ItemSortBy>
 }
 
 export type Context<Path extends string = any> = RoutedContext<

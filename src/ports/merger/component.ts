@@ -27,7 +27,7 @@ export function createMergerComponent<
   async function fetch(optionsWithoutDefaults: FetchOptions<Options, SortBy>) {
     // compute defaults
     const options = getOptionsWithDefaults(optionsWithoutDefaults)
-
+    
     // gather results from all the sources
     const results = await Promise.all(
       sources.map((source) => source.fetch(options))

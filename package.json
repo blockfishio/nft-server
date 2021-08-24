@@ -13,7 +13,8 @@
     "start:watch": "nodemon src/index.ts",
     "migrate": "ts-node migrations/index.ts",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "postinstall": "patch-package"
   },
   "keywords": [
     "decentraland"
@@ -26,7 +27,7 @@
     "printWidth": 80
   },
   "dependencies": {
-    "@dcl/schemas": "^1.5.0",
+    "@dcl/schemas": "^1.5.1",
     "@types/sqlite3": "^3.1.7",
     "@well-known-components/env-config-provider": "^1.0.0",
     "@well-known-components/http-server": "^1.0.0",
@@ -37,6 +38,7 @@
     "dotenv": "^8.2.0",
     "fp-future": "^1.0.1",
     "node-fetch": "^2.6.1",
+    "patch-package": "^6.4.7",
     "sql-template-strings": "^2.2.2",
     "sqlite": "^4.0.19",
     "sqlite3": "^5.0.2",

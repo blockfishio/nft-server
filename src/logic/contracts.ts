@@ -387,3 +387,69 @@ export async function getMarketplaceContracts(
       return []
   }
 }
+
+export async function getETHMarketplaceContracts(
+  chainId: ChainId
+): Promise<Contract[]> {
+  switch (chainId) {
+    case ChainId.ETHEREUM_MAINNET: {
+      return [
+        {
+          name: 'ASSET',
+          address: '0x46741b56c57b6c2470e9ead3cd6ee13bb2a4fe7b',
+          category: NFTCategory.ASSET,
+          network: Network.ETHEREUM,
+          chainId: ChainId.ETHEREUM_MAINNET,
+        },
+        
+      ]
+    }
+    case ChainId.ETHEREUM_ROPSTEN: {
+      return [
+        {
+          name: 'ASSET',
+          address: '0x11aff557bf2c052b4751628a878fd23e05f5d99d',
+          category: NFTCategory.ASSET,
+          network: Network.ETHEREUM,
+          chainId: ChainId.ETHEREUM_ROPSTEN,
+        },
+        
+      ]
+    }
+    default:
+      return []
+  }
+}
+
+export async function getBSCMarketplaceContracts(
+  chainId: ChainId
+): Promise<Contract[]> {
+  switch (chainId) {
+    case ChainId.BSC_MAINNET: {
+      return [
+        {
+          name: 'ASSET',
+          address: '0x9e78a8bdbdddE4bf49c241C0E37F524CFD4dAbBe',
+          category: NFTCategory.ASSET,
+          network: Network.BSC,
+          chainId: ChainId.BSC_MAINNET,
+        },
+        
+      ]
+    }
+    case ChainId.BSC_TESTNET: {
+      return [
+        {
+          name: 'ASSET',
+          address: '0x732c6f9C7aCD67649750a6efA26fAF3D0d8Ff3e3',
+          category: NFTCategory.ASSET,
+          network: Network.BSC,
+          chainId: ChainId.BSC_TESTNET,
+        },
+        
+      ]
+    }
+    default:
+      return []
+  }
+}

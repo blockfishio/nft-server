@@ -34,6 +34,8 @@ export function createNFTComponent<T extends { id: string }>(options: {
         isCount
       )
       const variables = getQueryVariables(filters, getSortByProp)
+      
+
       const { nfts: fragments } = await subgraph.query<{
         nfts: T[]
       }>(query, variables)
@@ -45,7 +47,7 @@ export function createNFTComponent<T extends { id: string }>(options: {
     if (shouldFetch && !shouldFetch(options)) {
       return []
     }
-
+    
     if (options.tokenId && options.contractAddresses) {
       const nft = await fetchOne(options.contractAddresses[0], options.tokenId)
       return nft ? [nft] : []

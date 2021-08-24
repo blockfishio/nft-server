@@ -1,4 +1,6 @@
-import { NFTSortBy, NFTFilters, WearableGender, QueryVariables } from './types'
+import { NFTSortBy, NFTFilters,
+  //  WearableGender, 
+   QueryVariables } from './types'
 
 export const NFT_DEFAULT_SORT_BY = NFTSortBy.NEWEST
 
@@ -76,17 +78,17 @@ export function getFetchQuery(
     where.push(`searchText_contains: "${filters.search.trim().toLowerCase()}"`)
   }
 
-  if (filters.wearableCategory) {
-    where.push('searchWearableCategory: $wearableCategory')
-  }
+  // if (filters.wearableCategory) {
+  //   where.push('searchWearableCategory: $wearableCategory')
+  // }
 
-  if (filters.isWearableHead) {
-    where.push('searchIsWearableHead: $isWearableHead')
-  }
+  // if (filters.isWearableHead) {
+  //   where.push('searchIsWearableHead: $isWearableHead')
+  // }
 
-  if (filters.isWearableAccessory) {
-    where.push('searchIsWearableAccessory: $isWearableAccessory')
-  }
+  // if (filters.isWearableAccessory) {
+  //   where.push('searchIsWearableAccessory: $isWearableAccessory')
+  // }
 
   if (filters.itemRarities && filters.itemRarities.length > 0) {
     where.push(
@@ -96,18 +98,18 @@ export function getFetchQuery(
     )
   }
 
-  if (filters.wearableGenders && filters.wearableGenders.length > 0) {
-    const hasMale = filters.wearableGenders.includes(WearableGender.MALE)
-    const hasFemale = filters.wearableGenders.includes(WearableGender.FEMALE)
+  // if (filters.wearableGenders && filters.wearableGenders.length > 0) {
+  //   const hasMale = filters.wearableGenders.includes(WearableGender.MALE)
+  //   const hasFemale = filters.wearableGenders.includes(WearableGender.FEMALE)
 
-    if (hasMale && !hasFemale) {
-      where.push(`searchWearableBodyShapes: [BaseMale]`)
-    } else if (hasFemale && !hasMale) {
-      where.push(`searchWearableBodyShapes: [BaseFemale]`)
-    } else if (hasMale && hasFemale) {
-      where.push(`searchWearableBodyShapes_contains: [BaseMale, BaseFemale]`)
-    }
-  }
+  //   if (hasMale && !hasFemale) {
+  //     where.push(`searchWearableBodyShapes: [BaseMale]`)
+  //   } else if (hasFemale && !hasMale) {
+  //     where.push(`searchWearableBodyShapes: [BaseFemale]`)
+  //   } else if (hasMale && hasFemale) {
+  //     where.push(`searchWearableBodyShapes_contains: [BaseMale, BaseFemale]`)
+  //   }
+  // }
 
   if (filters.contractAddresses && filters.contractAddresses.length > 0) {
     where.push(
@@ -126,7 +128,6 @@ export function getFetchQuery(
       ? filters.skip + filters.first
       : filters.first
     : max
-
   const query = `query NFTs(
     ${NFTS_FILTERS}
     ${getExtraVariables ? getExtraVariables(filters).join('\n') : ''}
@@ -134,13 +135,16 @@ export function getFetchQuery(
     nfts(
       where: {
         ${where.join('\n')}
-        ${getExtraWhere ? getExtraWhere(filters).join('\n') : ''}
+        ${
+          getExtraWhere ? getExtraWhere(filters).join('\n') : ''
+
+        }
       }${getArguments(total)})
     {
       ${isCount ? 'id' : `...${fragmentName}`}
     }
   }`
-
+ 
   return `
     ${query}
     ${isCount ? '' : getNFTFragment()}

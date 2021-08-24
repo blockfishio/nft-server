@@ -4,7 +4,7 @@ import {
   NFTCategory,
   Order,
   Rarity,
-  WearableCategory,
+  // WearableCategory,
 } from '@dcl/schemas'
 
 export enum WearableGender {
@@ -22,13 +22,13 @@ export type NFTFilters = {
   search?: string
   itemRarities?: Rarity[]
   isLand?: boolean
-  isWearableHead?: boolean
-  isWearableAccessory?: boolean
-  wearableCategory?: WearableCategory
-  wearableGenders?: WearableGender[]
+  // isWearableHead?: boolean
+  // isWearableAccessory?: boolean
+  // wearableCategory?: WearableCategory
+  // wearableGenders?: WearableGender[]
   contractAddresses?: string[]
   tokenId?: string
-  itemId?: string
+  // itemId?: string
   network?: Network
 }
 
