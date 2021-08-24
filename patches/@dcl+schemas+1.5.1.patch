@@ -1,0 +1,240 @@
+diff --git a/node_modules/@dcl/schemas/dist/dapps/chain-id.d.ts b/node_modules/@dcl/schemas/dist/dapps/chain-id.d.ts
+index 31d02ec..6226e1a 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/chain-id.d.ts
++++ b/node_modules/@dcl/schemas/dist/dapps/chain-id.d.ts
+@@ -11,7 +11,9 @@ export declare enum ChainId {
+     ETHEREUM_GOERLI = 5,
+     ETHEREUM_KOVAN = 42,
+     MATIC_MAINNET = 137,
+-    MATIC_MUMBAI = 80001
++    MATIC_MUMBAI = 80001,
++    BSC_MAINNET=56,
++    BSC_TESTNET=97
+ }
+ /**
+  * Get the chain name by chain id
+diff --git a/node_modules/@dcl/schemas/dist/dapps/chain-id.js b/node_modules/@dcl/schemas/dist/dapps/chain-id.js
+index 1dd88d9..35aba74 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/chain-id.js
++++ b/node_modules/@dcl/schemas/dist/dapps/chain-id.js
+@@ -16,6 +16,8 @@ var ChainId;
+     ChainId[ChainId["ETHEREUM_KOVAN"] = 42] = "ETHEREUM_KOVAN";
+     ChainId[ChainId["MATIC_MAINNET"] = 137] = "MATIC_MAINNET";
+     ChainId[ChainId["MATIC_MUMBAI"] = 80001] = "MATIC_MUMBAI";
++    ChainId[ChainId["BSC_MAINNET"] = 56] = "BSC_MAINNET";
++    ChainId[ChainId["BSC_TESTNET"] = 97] = "BSC_TESTNET";
+ })(ChainId = exports.ChainId || (exports.ChainId = {}));
+ /**
+  * Get the chain name by chain id
+@@ -37,6 +39,10 @@ function getChainName(chainId) {
+             return chain_name_1.ChainName.MATIC_MAINNET;
+         case ChainId.MATIC_MUMBAI:
+             return chain_name_1.ChainName.MATIC_MUMBAI;
++        case ChainId.BSC_MAINNET:
++            return chain_name_1.ChainName.BSC_MAINNET;
++        case ChainId.BSC_TESTNET:
++            return chain_name_1.ChainName.BSC_TESTNET;
+         default:
+             return null;
+     }
+diff --git a/node_modules/@dcl/schemas/dist/dapps/chain-name.d.ts b/node_modules/@dcl/schemas/dist/dapps/chain-name.d.ts
+index 87b4db0..7c601f5 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/chain-name.d.ts
++++ b/node_modules/@dcl/schemas/dist/dapps/chain-name.d.ts
+@@ -11,7 +11,9 @@ export declare enum ChainName {
+     ETHEREUM_GOERLI = "GOERLI",
+     ETHEREUM_KOVAN = "KOVAN",
+     MATIC_MAINNET = "MATIC",
+-    MATIC_MUMBAI = "MUMBAI"
++    MATIC_MUMBAI = "MUMBAI",
++    BSC_MAINNET = "BSC_MAINNET",
++    BSC_TESTNET = "BSC_TESTNET"
+ }
+ /**
+  * Get chain id by chain name
+diff --git a/node_modules/@dcl/schemas/dist/dapps/network.d.ts b/node_modules/@dcl/schemas/dist/dapps/network.d.ts
+index 1782b9f..d786696 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/network.d.ts
++++ b/node_modules/@dcl/schemas/dist/dapps/network.d.ts
+@@ -5,7 +5,8 @@ import { JSONSchema, ValidateFunction } from '../validation';
+  */
+ export declare enum Network {
+     ETHEREUM = "ETHEREUM",
+-    MATIC = "MATIC"
++    MATIC = "MATIC",
++    BSC="BSC"
+ }
+ /**
+  * @alpha
+diff --git a/node_modules/@dcl/schemas/dist/dapps/network.js b/node_modules/@dcl/schemas/dist/dapps/network.js
+index 9bd0e22..e9548da 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/network.js
++++ b/node_modules/@dcl/schemas/dist/dapps/network.js
+@@ -10,6 +10,8 @@ var Network;
+ (function (Network) {
+     Network["ETHEREUM"] = "ETHEREUM";
+     Network["MATIC"] = "MATIC";
++    Network["BSC"] = "BSC";
++
+ })(Network = exports.Network || (exports.Network = {}));
+ /**
+  * @alpha
+diff --git a/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts b/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
+index 0cdc777..b0d0d14 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
++++ b/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
+@@ -3,7 +3,8 @@ export declare enum NFTCategory {
+     PARCEL = "parcel",
+     ESTATE = "estate",
+     WEARABLE = "wearable",
+-    ENS = "ens"
++    ENS = "ens",
++    ASSET="asset"
+ }
+ export declare namespace NFTCategory {
+     const schema: JSONSchema<NFTCategory>;
+diff --git a/node_modules/@dcl/schemas/dist/dapps/nft-category.js b/node_modules/@dcl/schemas/dist/dapps/nft-category.js
+index f6ce2e0..3df214f 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/nft-category.js
++++ b/node_modules/@dcl/schemas/dist/dapps/nft-category.js
+@@ -8,6 +8,8 @@ var NFTCategory;
+     NFTCategory["ESTATE"] = "estate";
+     NFTCategory["WEARABLE"] = "wearable";
+     NFTCategory["ENS"] = "ens";
++    NFTCategory["ASSET"] = "asset";
++
+ })(NFTCategory = exports.NFTCategory || (exports.NFTCategory = {}));
+ (function (NFTCategory) {
+     NFTCategory.schema = {
+diff --git a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
+index c50109a..940d614 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
++++ b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
+@@ -18,6 +18,31 @@ export declare type NFT = {
+     issuedId: string | null;
+     itemId: string | null;
+     data: {
++        land?:{
++            x:string;
++            y:string;
++            description:string;
++            id:string;
++        };
++        boardingpass?:{
++            description:string;
++            id:string;
++        }
++        tower?:{
++            description:string;
++            id:string;
++            rarity:string;
++        }
++        trap?:{
++            description:string;
++            id:string;
++            rarity:string;
++        }
++        building?:{
++            description:string;
++            id:string;
++            rarity:string;
++        }    
+         parcel?: {
+             x: string;
+             y: string;
+diff --git a/node_modules/@dcl/schemas/dist/dapps/nft.js b/node_modules/@dcl/schemas/dist/dapps/nft.js
+index 4e3fc19..69eb59f 100644
+--- a/node_modules/@dcl/schemas/dist/dapps/nft.js
++++ b/node_modules/@dcl/schemas/dist/dapps/nft.js
+@@ -42,6 +42,91 @@ var NFT;
+                 type: 'object',
+                 nullable: false,
+                 properties: {
++                    boardingpass: {
++                        type: 'object',
++                        properties: {
++                            description: {
++                                type: ['string'],
++                                nullable: true,
++                            },
++                            
++                            id:{
++                                type:'string'
++                            }
++                            
++                        },
++                        required: ['description', 'id'],
++                        nullable: true,
++                    },
++                    land: {
++                        type: 'object',
++                        properties: {
++                            description: {
++                                type: ['string'],
++                                nullable: true,
++                            },
++                            x: {
++                                type: 'string',
++                            },
++                            y: {
++                                type: 'string',
++                            },
++                            id:{
++                                type:'string'
++                            }
++                            
++                        },
++                        required: ['description', 'x', 'y', 'id'],
++                        nullable: true,
++                    },
++                    tower: {
++                        type: 'object',
++                        properties: {
++                            description: {
++                                type: ['string'],
++                                nullable: true,
++                            },
++                            
++                            id:{
++                                type:'string'
++                            }
++                            
++                        },
++                        required: ['description',  'id'],
++                        nullable: true,
++                    },
++                    trap: {
++                        type: 'object',
++                        properties: {
++                            description: {
++                                type: ['string'],
++                                nullable: true,
++                            },
++                            
++                            id:{
++                                type:'string'
++                            }
++                            
++                        },
++                        required: ['description',  'id'],
++                        nullable: true,
++                    },
++                    building: {
++                        type: 'object',
++                        properties: {
++                            description: {
++                                type: ['string'],
++                                nullable: true,
++                            },
++                            
++                            id:{
++                                type:'string'
++                            }
++                            
++                        },
++                        required: ['description',  'id'],
++                        nullable: true,
++                    },
+                     parcel: {
+                         type: 'object',
+                         properties: {
