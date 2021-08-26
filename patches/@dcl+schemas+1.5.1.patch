@@ -80,37 +80,56 @@ index 9bd0e22..e9548da 100644
  /**
   * @alpha
 diff --git a/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts b/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
-index 0cdc777..b0d0d14 100644
+index 0cdc777..94d4c2f 100644
 --- a/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
 +++ b/node_modules/@dcl/schemas/dist/dapps/nft-category.d.ts
-@@ -3,7 +3,8 @@ export declare enum NFTCategory {
+@@ -3,7 +3,14 @@ export declare enum NFTCategory {
      PARCEL = "parcel",
      ESTATE = "estate",
      WEARABLE = "wearable",
 -    ENS = "ens"
 +    ENS = "ens",
-+    ASSET="asset"
++    ASSET="asset",
++    BOARDNGPASS = 'boardingpass',
++  CHEST = 'chest',
++  LAND = 'land',
++  BUILDING = 'building',
++  TOWER = 'tower',
++  TRAP = 'trap'
  }
  export declare namespace NFTCategory {
      const schema: JSONSchema<NFTCategory>;
 diff --git a/node_modules/@dcl/schemas/dist/dapps/nft-category.js b/node_modules/@dcl/schemas/dist/dapps/nft-category.js
-index f6ce2e0..3df214f 100644
+index f6ce2e0..ca8cddd 100644
 --- a/node_modules/@dcl/schemas/dist/dapps/nft-category.js
 +++ b/node_modules/@dcl/schemas/dist/dapps/nft-category.js
-@@ -8,6 +8,8 @@ var NFTCategory;
+@@ -8,6 +8,16 @@ var NFTCategory;
      NFTCategory["ESTATE"] = "estate";
      NFTCategory["WEARABLE"] = "wearable";
      NFTCategory["ENS"] = "ens";
 +    NFTCategory["ASSET"] = "asset";
++    NFTCategory["BOARDINGPASS"]="boardingpass";
++    NFTCategory["CHEST"]="chest";
++    NFTCategory["LAND"]="land";
++    NFTCategory["BUILDING"]="building";
++    NFTCategory["TOWER"]="tower";
++    NFTCategory["TRAP"]="trap";
++
++
 +
  })(NFTCategory = exports.NFTCategory || (exports.NFTCategory = {}));
  (function (NFTCategory) {
      NFTCategory.schema = {
 diff --git a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
-index c50109a..940d614 100644
+index c50109a..70135f3 100644
 --- a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
 +++ b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
-@@ -18,6 +18,31 @@ export declare type NFT = {
+@@ -14,10 +14,36 @@ export declare type NFT = {
+     name: string;
+     category: NFTCategory;
+     image: string;
++    thumbnail:string;
+     url: string;
      issuedId: string | null;
      itemId: string | null;
      data: {
