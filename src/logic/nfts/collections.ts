@@ -121,6 +121,7 @@ export function fromCollectionsFragment(
       owner: fragment.owner.address.toLowerCase(),
       name: fragment.metadata.wearable.name,
       image: fragment.image,
+      thumbnail:fragment.thumbnail,
       url: `/contracts/${fragment.contractAddress}/tokens/${fragment.tokenId}`,
       data: {
         wearable: {

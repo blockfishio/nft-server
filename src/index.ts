@@ -295,12 +295,12 @@ async function initComponents(): Promise<AppComponents> {
 
 
 
-  const eth_nfts = createMergerComponent<NFTResult, NFTFilters, NFTSortBy>({
+  const nfts = createMergerComponent<NFTResult, NFTFilters, NFTSortBy>({
     sources: [
       // createNFTsSource(marketplaceNFTs),
       // createNFTsSource(collectionsNFTs),
       createNFTsSource(ETHmarketplaceNFTs),
-      // createNFTsSource(BSCmarketplaceNFTs),
+      createNFTsSource(BSCmarketplaceNFTs),
     ],
     defaultSortBy: NFT_DEFAULT_SORT_BY,
     directions: {
@@ -312,22 +312,7 @@ async function initComponents(): Promise<AppComponents> {
     maxCount: 1000,
   })
 
-  const bsc_nfts = createMergerComponent<NFTResult, NFTFilters, NFTSortBy>({
-    sources: [
-      // createNFTsSource(marketplaceNFTs),
-      // createNFTsSource(collectionsNFTs),
-      createNFTsSource(BSCmarketplaceNFTs),
-      // createNFTsSource(BSCmarketplaceNFTs),
-    ],
-    defaultSortBy: NFT_DEFAULT_SORT_BY,
-    directions: {
-      [NFTSortBy.CHEAPEST]: SortDirection.ASC,
-      [NFTSortBy.NAME]: SortDirection.ASC,
-      [NFTSortBy.NEWEST]: SortDirection.DESC,
-      [NFTSortBy.RECENTLY_LISTED]: SortDirection.DESC,
-    },
-    maxCount: 1000,
-  })
+  
 
   // items
   // const collectionsItems = createItemsComponent({
@@ -357,8 +342,7 @@ async function initComponents(): Promise<AppComponents> {
     orders,
     // bids,
     contracts,
-    eth_nfts,
-    bsc_nfts
+    nfts,
     // items,
   }
 }

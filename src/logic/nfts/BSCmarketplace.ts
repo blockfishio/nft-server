@@ -147,6 +147,7 @@ export function fromBSCMarketplaceNFTFragment(
       owner: fragment.owner.address.toLowerCase(),
       name: fragment.name || capitalize(fragment.category),
       image: fragment.image || '',
+      thumbnail:fragment.thumbnail || '',
       url: `/contracts/${fragment.contractAddress}/bsc/tokens/${fragment.tokenId}`,
       data: {
         land: fragment.land

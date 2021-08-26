@@ -3,10 +3,9 @@ import { GlobalContext } from '../types'
 // import { createBidsHandler } from './handlers/bids'
 import { createOrdersHandler } from './handlers/orders'
 import { createContractsHandler } from './handlers/contracts'
-import { createETHNFTHandler,
-   createETHNFTsHandler ,
-   createBSCNFTHandler,
-   createBSCNFTsHandler
+import { 
+   createNFTsHandler,
+   createNFTHandler
   } from './handlers/nfts'
 // import { createItemsHandler } from './handlers/items'
 
@@ -22,19 +21,15 @@ export async function setupRoutes(globalContext: GlobalContext) {
 
   // router.get('/bids', createBidsHandler(components))
   router.get('/orders', createOrdersHandler(components))
-  router.get('/eth_nfts', createETHNFTsHandler(components))
-  router.get('/bsc_nfts', createBSCNFTsHandler(components))
+  router.get('/nfts', createNFTsHandler(components))
 
   // router.get('/items', createItemsHandler(components))
   router.get('/contracts', createContractsHandler(components))
   router.get(
-    '/contracts/:contractAddress/eth/tokens/:tokenId',
-    createETHNFTHandler(components)
+    '/contracts/:contractAddress/tokens/:tokenId',
+    createNFTHandler(components)
   )
-  router.get(
-    '/contracts/:contractAddress/bsc/tokens/:tokenId',
-    createBSCNFTHandler(components)
-  )
+  
 
   server.use(router.middleware())
 }

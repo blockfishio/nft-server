@@ -27,12 +27,10 @@ export function createMergerComponent<
   async function fetch(optionsWithoutDefaults: FetchOptions<Options, SortBy>) {
     // compute defaults
     const options = getOptionsWithDefaults(optionsWithoutDefaults)
-    
     // gather results from all the sources
     const results = await Promise.all(
       sources.map((source) => source.fetch(options))
     )
-
     // sort results
     const sorted = sort<Result, SortBy>(
       results.reduce((results, all) => all.concat(results)),
@@ -61,6 +59,7 @@ export function createMergerComponent<
 
   async function fetchAndCount(options: FetchOptions<Options, SortBy>) {
     const [data, total] = await Promise.all([fetch(options), count(options)])
+    
     return { data, total }
   }
 
