@@ -5,7 +5,7 @@ import {
 } from '@dcl/schemas'
 import { NFTFilters, NFTResult, NFTSortBy } from '../../ports/nfts/types'
 import { 
-  // getId,
+  getId,
    NFT_DEFAULT_SORT_BY } from '../../ports/nfts/utils'
 import { OrderFragment } from '../../ports/orders/types'
 import { fromOrderFragment, getOrderFields } from '../../ports/orders/utils'
@@ -136,8 +136,8 @@ export function fromETHMarketplaceNFTFragment(
 ): NFTResult {
   const result: NFTResult = {
     nft: {
-      // id: getId(fragment.contractAddress, fragment.tokenId),
-      id:fragment.tokenId,
+      id: getId(fragment.contractAddress, fragment.tokenId),
+      // id:fragment.tokenId,
       tokenId: fragment.tokenId,
       contractAddress: fragment.contractAddress,
       activeOrderId:
@@ -157,7 +157,8 @@ export function fromETHMarketplaceNFTFragment(
                 ,
               x: fragment.land.x,
               y: fragment.land.y,
-              id:fragment.id
+              id: fragment.id,
+
             }
           : undefined,
         boardingpass: fragment.boardingpass
@@ -165,7 +166,8 @@ export function fromETHMarketplaceNFTFragment(
               description:
                 fragment.boardingpass.description
                 ,
-              id:fragment.id
+                id: fragment.id,
+
             }
           : undefined,
           tower: fragment.tower
@@ -173,7 +175,8 @@ export function fromETHMarketplaceNFTFragment(
               description:
                 fragment.tower.description
                 ,
-              id:fragment.id,
+                id: fragment.id,
+
               rarity:fragment.tower.rarity
             }
           : undefined,
@@ -182,7 +185,8 @@ export function fromETHMarketplaceNFTFragment(
               description:
                 fragment.trap.description
                 ,
-              id:fragment.id,
+                id: fragment.id,
+
               rarity:fragment.trap.rarity
 
             }
@@ -192,7 +196,8 @@ export function fromETHMarketplaceNFTFragment(
               description:
                 fragment.building.description
                 ,
-              id:fragment.id,
+                id: fragment.id,
+
               rarity:fragment.building.rarity
             }
           : undefined,
@@ -218,7 +223,6 @@ export function fromETHMarketplaceNFTFragment(
       delete result.nft.data[key]
     }
   }
-
   return result
 }
 
