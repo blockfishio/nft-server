@@ -34,6 +34,7 @@ type NFT = {
   name: string
   category: NFTCategory
   image: string
+  thumbnail:string
   url: string
   issuedId: string | null
   itemId: string | null
@@ -52,6 +53,7 @@ type NFT = {
 - `sortBy`: Sort results. Possible values: `newest`, `name`, `recently_listed`, `cheapest`.
 - `category`: Filter by `NFTCategory`. Possible values: `parcel`, `estate`, `wearable`, `ens`.
 - `owner`: Filter by owner. Type: `address`.
+- `ownernot`: Filter by owner_not. Type: `address`.
 - `isOnSale`: Only return results that have an open, non-expired listing. Type: `boolean`.
 - `search`: Free text search. Type: `string`.
 - `isLand`: Only return results that their `category` is either `parcel` or `estate`.
