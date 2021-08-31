@@ -11,6 +11,7 @@ const NFTS_FILTERS = `
   $orderDirection: String
   $expiresAt: String
   $owner: String
+  $ownernot:String
   $wearableCategory: String
   $isWearableHead: Boolean
   $isWearableAccessory: Boolean
@@ -63,6 +64,9 @@ export function getFetchQuery(
 
   if (filters.owner) {
     where.push('owner: $owner')
+  }
+  if (filters.ownernot){
+    where.push('owner_not: $ownernot')
   }
 
   if (

@@ -21,6 +21,7 @@ export function createNFTsHandler(
     const sortBy = params.getValue<NFTSortBy>('sortBy', NFTSortBy)
     const category = params.getValue<NFTCategory>('category', NFTCategory)
     const owner = params.getAddress('owner')
+    const ownernot=params.getAddress('ownernot')
     const isOnSale = params.getBoolean('isOnSale')
     const search = params.getString('search')
     const isLand = params.getBoolean('isLand')
@@ -37,6 +38,7 @@ export function createNFTsHandler(
         sortBy,
         category,
         owner,
+        ownernot,
         isOnSale,
         search,
         isLand,

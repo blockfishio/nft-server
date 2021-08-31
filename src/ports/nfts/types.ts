@@ -18,6 +18,7 @@ export type NFTFilters = {
   sortBy?: NFTSortBy
   category?: NFTCategory
   owner?: string
+  ownernot?:string
   isOnSale?: boolean
   search?: string
   itemRarities?: Rarity[]

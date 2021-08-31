@@ -11,6 +11,7 @@ export type OrderFilters = {
   skip?: number
   sortBy?: OrderSortBy
   owner?: string
+  ownernot?:string
   buyer?: string
   contractAddress?: string
   tokenId?: string

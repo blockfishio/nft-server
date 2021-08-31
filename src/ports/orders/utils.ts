@@ -35,6 +35,7 @@ export const getOrdersQuery = (filters: OrderFilters, isCount = false) => {
     tokenId,
     buyer,
     owner,
+    ownernot,
     status,
   } = filters
 
@@ -54,6 +55,9 @@ export const getOrdersQuery = (filters: OrderFilters, isCount = false) => {
 
   if (owner) {
     where.push(`owner: "${owner}"`)
+  }
+  if (ownernot){
+    where.push(`owner_not: "${ownernot}"`)
   }
 
   if (status) {
