@@ -134,6 +134,7 @@ export function fromCollectionsFragment(
       issuedId: fragment.issuedId,
       itemId: fragment.itemBlockchainId,
       category: NFTCategory.WEARABLE,
+      subcategory:fragment.subcategory,
       network: Network.MATIC,
       chainId: getCollectionsChainId(),
       createdAt: +fragment.createdAt * 1000,
