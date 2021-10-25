@@ -121,12 +121,14 @@ index f6ce2e0..ca8cddd 100644
  (function (NFTCategory) {
      NFTCategory.schema = {
 diff --git a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
-index c50109a..70135f3 100644
+index c50109a..93f4b96 100644
 --- a/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
 +++ b/node_modules/@dcl/schemas/dist/dapps/nft.d.ts
-@@ -14,10 +14,36 @@ export declare type NFT = {
+@@ -13,11 +13,38 @@ export declare type NFT = {
+     owner: string;
      name: string;
      category: NFTCategory;
++    subcategory:string;
      image: string;
 +    thumbnail:string;
      url: string;

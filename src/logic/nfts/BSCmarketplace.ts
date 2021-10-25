@@ -20,6 +20,7 @@ export const getBSCMarketplaceFields = () => `
     contractAddress
     tokenId
     category
+    subcategory
     image
     thumbnail
     owner {
@@ -76,6 +77,7 @@ export type BSCMarketplaceNFTFields = {
   thumbnail:string | null
   tokenId: string
   category: NFTCategory
+  subcategory:string
   owner: { address: string }
   boardingpass?: {
     id:string
@@ -200,6 +202,7 @@ export function fromBSCMarketplaceNFTFragment(
       issuedId: null,
       itemId: null,
       category: fragment.category,
+      subcategory:fragment.subcategory,
       network: Network.BSC,
       chainId: getBSCMarketChainId(),
       createdAt: +fragment.createdAt * 1000,

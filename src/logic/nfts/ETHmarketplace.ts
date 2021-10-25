@@ -20,6 +20,7 @@ export const getETHMarketplaceFields = () => `
     contractAddress
     tokenId
     category
+    subcategory
     image
     thumbnail
     owner {
@@ -76,6 +77,7 @@ export type ETHMarketplaceNFTFields = {
   thumbnail:string | null
   tokenId: string
   category: NFTCategory
+  subcategory:string
   owner: { address: string }
   boardingpass?: {
     id:string
@@ -205,6 +207,7 @@ export function fromETHMarketplaceNFTFragment(
       issuedId: null,
       itemId: null,
       category: fragment.category,
+      subcategory:fragment.subcategory,
       network: Network.ETHEREUM,
       chainId: getETHMarketChainId(),
       createdAt: +fragment.createdAt * 1000,
