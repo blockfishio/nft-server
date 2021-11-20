@@ -1,7 +1,7 @@
 import { FetchOptions, IMergerComponent, MergerOptions } from './types'
 import { sort } from './utils'
 
-export const DEFAULT_FIRST = 20
+export const DEFAULT_FIRST = undefined
 
 export function createMergerComponent<
   Result,
@@ -39,7 +39,7 @@ export function createMergerComponent<
     )
 
     // return the limit of result, if first is 0, that means all the results
-    return options.first === 0
+    return options.first === undefined
       ? sorted.slice(options.skip)
       : sorted.slice(options.skip, options.first + options.skip)
   }
