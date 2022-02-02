@@ -58,8 +58,13 @@ export function createNFTComponent<T extends { id: string }>(options: {
     }
 
     const fetchFragments = getFragmentFetcher(options)
+    console.log(options.network)
+    console.log('start fetch')
+    console.log(options)
     const fragments = await fetchFragments()
+    console.log('finish fetch')
     const nfts = fragments.map(fromFragment)
+    console.log(nfts)
     return nfts
   }
 

@@ -31,12 +31,14 @@ export function createMergerComponent<
     const results = await Promise.all(
       sources.map((source) => source.fetch(options))
     )
+    console.log('fetch success 1')
     // sort results
     const sorted = sort<Result, SortBy>(
       results.reduce((results, all) => all.concat(results)),
       options.sortBy,
       directions[options.sortBy]
     )
+    console.log('fetch sort success 2')
 
     // return the limit of result, if first is 0, that means all the results
     return options.first === undefined
@@ -54,12 +56,13 @@ export function createMergerComponent<
     const total = counts.reduce((total, count) => total + count, 0)
 
     // cap max count (if any)
+    console.log('count success')
     return maxCount ? Math.min(total, maxCount) : total
   }
 
   async function fetchAndCount(options: FetchOptions<Options, SortBy>) {
     const [data, total] = await Promise.all([fetch(options), count(options)])
-    
+    console.log('fetch and count success')
     return { data, total }
   }
 

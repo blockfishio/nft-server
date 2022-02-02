@@ -255,13 +255,18 @@ export function fromETHMarketplaceOrderFragment(fragment: OrderFragment) {
 }
 
 export function ETHmarketplaceShouldFetch(filters: NFTFilters) {
+  return false
+
   if (
     (filters.network && filters.network !== Network.ETHEREUM) 
     // ||
     //  filters.itemId
   ) {
+    console.log('eth shoudl fetch check false')
+
     return false
   }
+  console.log('eth shoudl fetch check true')
 
   return true
 }

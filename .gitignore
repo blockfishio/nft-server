@@ -13,3 +13,5 @@ TODO.md
 
 coverage
 *.zip
+
+*.out
