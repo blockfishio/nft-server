@@ -80,7 +80,6 @@ export function getItemsQuery(filters: ItemFilters, isCount = false) {
     isWearableHead,
     isWearableAccessory,
     wearableCategory,
-    wearableGenders,
     contractAddress,
     itemId,
   } = filters
@@ -121,24 +120,24 @@ export function getItemsQuery(filters: ItemFilters, isCount = false) {
 
   if (rarities && rarities.length > 0) {
     where.push(
-      `searchWearableRarity_in: [${rarities
+      `searchRarity_in: [${rarities
         .map((rarity) => `"${rarity}"`)
         .join(',')}]`
     )
   }
 
-  if (wearableGenders && wearableGenders.length > 0) {
-    const hasMale = wearableGenders.includes(WearableGender.MALE)
-    const hasFemale = wearableGenders.includes(WearableGender.FEMALE)
+  // if (wearableGenders && wearableGenders.length > 0) {
+  //   const hasMale = wearableGenders.includes(WearableGender.MALE)
+  //   const hasFemale = wearableGenders.includes(WearableGender.FEMALE)
 
-    if (hasMale && !hasFemale) {
-      where.push(`searchWearableBodyShapes: [BaseMale]`)
-    } else if (hasFemale && !hasMale) {
-      where.push(`searchWearableBodyShapes: [BaseFemale]`)
-    } else if (hasMale && hasFemale) {
-      where.push(`searchWearableBodyShapes_contains: [BaseMale, BaseFemale]`)
-    }
-  }
+  //   if (hasMale && !hasFemale) {
+  //     where.push(`searchWearableBodyShapes: [BaseMale]`)
+  //   } else if (hasFemale && !hasMale) {
+  //     where.push(`searchWearableBodyShapes: [BaseFemale]`)
+  //   } else if (hasMale && hasFemale) {
+  //     where.push(`searchWearableBodyShapes_contains: [BaseMale, BaseFemale]`)
+  //   }
+  // }
 
   if (contractAddress) {
     where.push(`collection: "${contractAddress}"`)

@@ -1,5 +1,5 @@
-import { Network, NFTCategory,
-  //  Rarity, 
+import { Network, NFTCategory, 
+  Rarity,
   //  WearableCategory
    } from '@dcl/schemas'
 import { IHttpServerComponent } from '@well-known-components/interfaces'
@@ -28,7 +28,9 @@ export function createNFTsHandler(
     
     const contractAddresses = params.getAddressList('contractAddress')
     const tokenId = params.getString('tokenId')
+    const itemRarities = params.getList<Rarity>('itemRarity', Rarity)
     const network = params.getValue<Network>('network', Network)
+
     
 
     return asJSON(() =>
@@ -44,6 +46,7 @@ export function createNFTsHandler(
         isLand,
         contractAddresses,
         tokenId,
+        itemRarities,
         network,
       })
     )

@@ -255,7 +255,7 @@ export function fromETHMarketplaceOrderFragment(fragment: OrderFragment) {
 }
 
 export function ETHmarketplaceShouldFetch(filters: NFTFilters) {
-  return false
+  // return false
 
   if (
     (filters.network && filters.network !== Network.ETHEREUM) 

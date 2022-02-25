@@ -96,7 +96,7 @@ export function getFetchQuery(
 
   if (filters.itemRarities && filters.itemRarities.length > 0) {
     where.push(
-      `searchWearableRarity_in: [${filters.itemRarities
+      `searchRarity_in: [${filters.itemRarities
         .map((rarity) => `"${rarity}"`)
         .join(',')}]`
     )

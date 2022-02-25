@@ -14,8 +14,7 @@ export async function asJSON(
 ): Promise<IHttpServerComponent.IResponse> {
   try {
     const result = await handle()
-    console.log('as json')
-    console.log(result)
+    // console.log(result)
     return {
       status: 200,
       body: result,

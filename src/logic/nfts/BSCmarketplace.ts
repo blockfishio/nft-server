@@ -251,17 +251,15 @@ export function fromBSCMarketplaceOrderFragment(fragment: OrderFragment) {
 }
 
 export function BSCmarketplaceShouldFetch(filters: NFTFilters) {
-  console.log('bsc should fetch check')
+  return false
   if (
     (filters.network && filters.network !== Network.BSC) 
     // ||
     //  filters.itemId
   ) {
-    console.log('bsc shoudl fetch check false')
 
     return false
   }
-  console.log('bsc shoudl fetch check true')
 
 
   return true
