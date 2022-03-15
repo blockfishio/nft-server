@@ -41,7 +41,9 @@ export enum NFTSortBy {
 }
 
 export type NFTResult = {
-  nft: NFT
+  nft: NFT & {
+    description?:string
+  }
   order: Order | null
 }
 

@@ -151,6 +151,8 @@ export function fromETHMarketplaceNFTFragment(
       image: fragment.image || '',
       thumbnail:fragment.thumbnail || '',
       url: `/contracts/${fragment.contractAddress}/eth/tokens/${fragment.tokenId}`,
+      description:fragment.land?.description || fragment.boardingpass?.description || fragment.tower?.description || 
+      fragment.trap?.description || fragment.building?.description || '',
       data: {
         land: fragment.land
           ? {
